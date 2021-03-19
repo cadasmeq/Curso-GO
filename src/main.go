@@ -1,27 +1,38 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+func isPalindrome(text string) {
+	var textReverse string
+
+	for i := len(text) - 1; i >= 0; i-- {
+		textReverse += string(text[i])
+	}
+
+	if strings.ToLower(text) == strings.ToLower(textReverse) {
+		fmt.Println("Es Palindromo.")
+	} else {
+		fmt.Println("No es un palindromo.")
+	}
+}
 
 func main() {
-	// Array
-	var array [5]int
-	array[0] = 1
-	array[1] = 2
+	m := make(map[string]int)
+	m["newmeta"] = 15
+	m["client"] = 30
 
-	fmt.Println(len(array), cap(array))
+	fmt.Println(m)
 
-	// Slice
-	slice := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
-	fmt.Println(slice, len(slice), cap(slice))
+	for key, value := range m {
+		fmt.Println(key, value)
+	}
+	// Encontrar valor -> return zero value
+	value, ok := m["Joseph"]
+	fmt.Println(value, ok)
 
-	// Sliceing
-	fmt.Println(slice[0])
-	fmt.Println(slice[:3])
-	fmt.Println(slice[2:4])
-	fmt.Println(slice[4:])
-
-	// Append
-	newSlice := []int{8, 9, 10}
-	slice = append(slice, newSlice...)
-
+	value, ok = m["newmeta"]
+	fmt.Println(value, ok)
 }
