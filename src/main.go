@@ -1,38 +1,18 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
-func isPalindrome(text string) {
-	var textReverse string
-
-	for i := len(text) - 1; i >= 0; i-- {
-		textReverse += string(text[i])
-	}
-
-	if strings.ToLower(text) == strings.ToLower(textReverse) {
-		fmt.Println("Es Palindromo.")
-	} else {
-		fmt.Println("No es un palindromo.")
-	}
+type car struct {
+	brand string
+	year  int
 }
 
 func main() {
-	m := make(map[string]int)
-	m["newmeta"] = 15
-	m["client"] = 30
+	myCar := car{brand: "Ford", year: 1993}
+	fmt.Println(myCar)
 
-	fmt.Println(m)
-
-	for key, value := range m {
-		fmt.Println(key, value)
-	}
-	// Encontrar valor -> return zero value
-	value, ok := m["Joseph"]
-	fmt.Println(value, ok)
-
-	value, ok = m["newmeta"]
-	fmt.Println(value, ok)
+	// Otra manera
+	var otherCar car
+	otherCar.brand = "Ferrari"
+	fmt.Println(otherCar)
 }
