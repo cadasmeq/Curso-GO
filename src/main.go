@@ -19,16 +19,23 @@ func doubleReturn(a int) (c, d int) {
 }
 
 func main() {
-	// Funciones
-	Printer("Hola Mundo")
-	tripleArgument(1, 2, "hola")
 
-	value := returnValue(5)
-	fmt.Println(value)
+	// For
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+	}
 
-	value1, value2 := doubleReturn(5)
-	fmt.Println(value1, value2)
+	// For while
+	counter := 0
+	for counter < 10 {
+		fmt.Println(counter)
+		counter++
+	}
 
-	value1, _ = doubleReturn(5)
-	fmt.Println(value1, value2)
+	// For forever
+	counterForever := 0
+	for {
+		fmt.Println(counterForever)
+		counterForever++
+	}
 }
