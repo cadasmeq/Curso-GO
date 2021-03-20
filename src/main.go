@@ -1,38 +1,38 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+	"time"
+)
 
-func calculateArea(s shape2D) {
-	fmt.Println("Area: ", s.computeArea())
-}
-
-type shape2D interface {
-	computeArea() float64
-}
-
-type Square struct{ base float64 }
-type Rectangle struct {
-	height float64
-	width  float64
-}
-
-func (s Square) computeArea() float64 {
-	return s.base * s.base
-}
-
-func (r Rectangle) computeArea() float64 {
-	return r.height * r.width
+func say(text string, wg *sync.WaitGroup) {
+	// Libera la gorutine del wait group
+	defer wg.Done()
+	println(text)
 }
 
 func main() {
-	square := Square{base: 5}
-	rectangle := Rectangle{height: 5, width: 3}
+	// Declarar wait group
+	// El cual va acumulando un grupo de gorutines
+	// y las va liberando poco a poco
+	var wg sync.WaitGroup
 
-	calculateArea(square)
-	calculateArea(rectangle)
+	fmt.Println("hello")
 
-	// Lista de interfaces
-	myInterface := []interface{}{"Hola", 12, true}
-	fmt.Println(myInterface...)
+	// Agregar una gorutine al waitgroup
+	wg.Add(2)
+	go say("world", &wg)
+	go say("again", &wg)
 
+	// Indica a la gorutine principal (wait) que espere
+	// hasta que el waitgroup finalice con sus gorutines
+	wg.Wait()
+
+	// Función anonima que tiene vida solo dentro de si misma
+	go func(text string) {
+		fmt.Println(text)
+	}("Adios")
+
+	time.Sleep(time.Second * 1)
 }
