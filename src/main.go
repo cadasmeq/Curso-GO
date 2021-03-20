@@ -2,23 +2,37 @@ package main
 
 import "fmt"
 
-type pc struct {
-	ram   int
-	disk  int
-	brand string
+func calculateArea(s shape2D) {
+	fmt.Println("Area: ", s.computeArea())
 }
 
-func (myPC pc) String() string {
-	return fmt.Sprintf(
-		"Tengo %d GB RAM, %d GB Disco y es una %s",
-		myPC.ram,
-		myPC.disk,
-		myPC.brand,
-	)
+type shape2D interface {
+	computeArea() float64
+}
+
+type Square struct{ base float64 }
+type Rectangle struct {
+	height float64
+	width  float64
+}
+
+func (s Square) computeArea() float64 {
+	return s.base * s.base
+}
+
+func (r Rectangle) computeArea() float64 {
+	return r.height * r.width
 }
 
 func main() {
-	mypc := pc{ram: 16, brand: "msi", disk: 100}
+	square := Square{base: 5}
+	rectangle := Rectangle{height: 5, width: 3}
 
-	fmt.Println(mypc)
+	calculateArea(square)
+	calculateArea(rectangle)
+
+	// Lista de interfaces
+	myInterface := []interface{}{"Hola", 12, true}
+	fmt.Println(myInterface...)
+
 }
